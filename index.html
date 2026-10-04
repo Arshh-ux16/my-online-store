@@ -34,30 +34,7 @@ header { background: #131921; color: white; padding: 15px 20px; display: flex; j
 <div class="container">
 <h2>Aapke Products</h2>
 <br>
-<div class="products-grid">
-<!-- Product 1 -->
-<div class="product-card">
-<img src="https://via.placeholder.com/250x200?text=Product+1" alt="Product 1">
-<div class="product-title">T-Shirt</div>
-<div class="product-price">₹499</div>
-<button class="btn" onclick="addToCart('T-Shirt', 499)">Add to Cart</button>
-</div>
-<!-- Product 2 -->
-<div class="product-card">
-<img src="https://via.placeholder.com/250x200?text=Product+2" alt="Product 2">
-<div class="product-title">Smart Watch</div>
-<div class="product-price">₹1,299</div>
-<button class="btn" onclick="addToCart('Smart Watch', 1299)">Add to Cart</button>
-</div>
-<!-- Product 3 -->
-<div class="product-card">
-<img src="https://via.placeholder.com/250x200?text=Product+3" alt="Product 3">
-<div class="product-title">Headphones</div>
-<div class="product-price">₹899</div>
-<button class="btn" onclick="addToCart('Headphones', 899)">Add to Cart</button>
-</div>
-</div>
-
+<div class="products-grid" id="products-container"></div>
 <!-- Cart Section -->
 <div class="cart-section" id="cart">
 <h2>Your Shopping Cart</h2>
@@ -67,7 +44,39 @@ header { background: #131921; color: white; padding: 15px 20px; display: flex; j
 </div>
 </div>
 
-<script>
+<// Yahan apne saare products ki details daalein
+<const myProducts = [
+    { name: "T-Shirt", price: 199, image: "https://www.mydesignation.com/cdn/shop/files/blue-textured-polo-polo-t-shirts-mydesignation-2183153.jpg?v=1782121688?text=T-Shirt" },
+    { name: "Iphone 16 pro", price: 79999, image: "https://rukminim3.flixcart.com/image/480/640/xif0q/mobile/o/o/9/-resized-original-imahggev6y5zhbjz.jpeg?q=90?text=phone" },
+    { name: "Zebornics headset", price: 699, image: "https://shop.zebronics.com/cdn/shop/files/Zeb-thunder-pro-blue-pic-1.jpg?v=1775891558&width=2000?text=Headset" },
+    { name: "Asian running shoes", price: 1199, image: "https://assets.ajio.com/medias/sys_master/root/20231201/LPMD/6568e920afa4cf41f5ac9035/-473Wx593H-466838794-mustard-MODEL.jpg?text=Shoes" },
+    { name: "Titan watch", price: 1300, image: "https://www.titan.co.in/dw/image/v2/BKDD_PRD/on/demandware.static/-/Sites-titan-master-catalog/default/dwbac1a0b7/images/Titan/Catalog/1648YM03_1.jpg?sw=600&sh=600?text=watch" },
+    { name: "Sunglasses", price: 199, image: "https://m.media-amazon.com/images/I/61Eftgdae-L._AC_UY1100_.jpg?text=Glasses" }
+    { name: "Ring light", price: 1399, image: "https://via.placeholder.com/250x200?text=ringlight" }
+    { name: "Samsung M47 5g", price: 27000, image: "https://via.placeholder.com/250x200?text=phone" }
+    { name: "Redmi Note 13pro 5g", price: 22000, image: "https://via.placeholder.com/250x200?text=phone" }
+    // Naya product add karne ke liye upar jaisi ek aur line add kar dein!
+];
+
+// Ye code apne aap saare products ko website par dikha dega
+function displayProducts() {
+    const container = document.getElementById('products-container');
+    container.innerHTML = '';
+    
+    myProducts.forEach(product => {
+        container.innerHTML += `
+            <div class="product-card">
+                <img src="${product.image}" alt="${product.name}">
+                <div class="product-title">${product.name}</div>
+                <div class="product-price">₹${product.price}</div>
+                <button class="btn" onclick="addToCart('${product.name}', ${product.price})">Add to Cart</button>
+            </div>
+        `;
+    });
+}
+
+// Page load hote hi products dikhane ke liye call karein
+displayProducts();>
 let cart = [];
 let total = 0;
 
