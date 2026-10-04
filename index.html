@@ -117,7 +117,7 @@ message += `${index + 1}. ${item.name} - ₹${item.price}\n`;
 message += `\nTotal Amount: ₹${total}\n\nKripya mera order confirm karein!`;
 
 const encodedMessage = encodeURIComponent(message);
-window.open(`https://wa.me/${myPhoneNumber="919432986924"}?text=${encodedMessage}`, '_blank');
+window.open(`https://api.whatsapp.com/send?phone=919432986924&text=${encodedMessage}`, '_blank');
 }
 
 function scrollToCart() {
